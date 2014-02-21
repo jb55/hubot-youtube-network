@@ -28,6 +28,13 @@ describe('youtube channel', function(){
     });
   });
 
+  it('doesnt fails on non-existent channel', function(done){
+    yt.getNetwork('kjsdfsdkjhfasdf', function(err, network){
+      should.exist(err);
+      done();
+    });
+  });
+
   it('video matches', function(done){
     yt.getNetwork('http://www.youtube.com/watch?v=NVlowrl_VYM', function(err, network){
       should.exist(network);

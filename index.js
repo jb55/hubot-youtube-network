@@ -11,6 +11,8 @@ function videoId(channel, cb) {
     .orderByPublished()
     .run(function(err, data){
       if (err) return cb(err);
+      if (!data || !data.feed || !data.feed.entry || data.feed.entry.length === 0)
+        return cb("no data");
       var id = data.feed.entry[0].id.$t.split(":");
       id = id[id.length - 1];
       return cb(null, id);

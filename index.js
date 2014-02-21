@@ -9,10 +9,11 @@ function videoId(channel, cb) {
     .videos(channel)
     .results(1)
     .orderByPublished()
-    .simple()
     .run(function(err, data){
       if (err) return cb(err);
-      return cb(null, data.feed.entry[0].id);
+      var id = data.feed.entry[0].id.$t.split(":");
+      id = id[id.length - 1];
+      return cb(null, id);
     });
 }
 
